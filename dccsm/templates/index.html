@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block title %}DccSm System{% endblock %}
+
+{% block content %} 
+    <section class="container">
+        <div class="block">
+            {% for node in all_nodes %}
+
+                <div class="nodes">
+                    <div class="boxes">
+                        <div class="box">
+                            <div class="box-content">
+                                <div class="node">
+                                    <div class="head">
+                                        <h3>{{ node }}</h3>
+                                    </div>
+                                    <div class="body">
+                                        <div class="element processor">P0</div>
+                                        <span class="fa fa-arrows-up-down fa-fade"></span>
+                                        <div class="element cash">
+                                            <div class="responsive-table">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="fw-bolder text-uppercase">Block</th>
+                                                            <th class="fw-bolder text-uppercase">Data</th>
+                                                            <th class="fw-bolder text-uppercase">Etat</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if node.all_caches %}
+                                                            {% for cache in node.all_caches %}
+                                                                {% if cache.state_cache == '4' %}
+                                                                    <tr class="text-danger">
+                                                                        <td>{{cache.bloc}}</td>
+                                                                        <td>--</td>
+                                                                        <td>{{cache.state_cache_state}}</td>
+                                                                    </tr>
+                                                                {% else %}
+                                                                    <tr>
+                                                                        <td>{{cache.bloc}}</td>
+                                                                        <td>{{cache.bloc.data}}</td>
+                                                                        <td>{{cache.state_cache_state}}</td>
+                                                                    </tr>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <!-- Visible by default  -->
+                                                            <tr>
+                                                                <td class="text-danger">Cache vide</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <span class="fa fa-arrows-up-down fa-fade"></span>
+                                        <div class="element memoire homememory">MM0</div>
+                                    </div>
+                                </div>
+                                <div class="connector"><span class="fa fa-arrows-up-down fa-fade"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="connections-box">
+            <p>Interconnection Network</p>
+        </div>
+    </section>
+    <section class="input-display">
+        
+        <div class="input">
+            <form action="#" method="post" enctype="multipart/form-data" id="formControl">
+                <div class="form-group">
+                    <select>
+                        <option value="option1">Home</option>
+                        <option value="option2">Local</option>
+                        <option value="option3">Remote</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select>
+                        <option value="option1">B0</option>
+                        <option value="option2">B1</option>
+                        <option value="option3">B2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input required="" type="text" id="EnteredData" placeholder="Enter data ...">
+                </div>
+                <div class="btns">
+                    <button type="button" onclick="readData()" class="btn btn-primary">Read</button>
+                    <button type="button" onclick="writeData()" class="btn btn-secondary">Write</button>
+                    <a href="{{ url_for('dccsm.reinitialisation_data') }}" class="btn reset">Reset</a>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="container-output">
+            <div class="repertoire">
+                <div class="card">
+                    <div class="card-header fw-bolder text-uppercase">Repertoire</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="fw-bolder text-uppercase">Block</th>
+                                        <th class="fw-bolder text-uppercase">Etat</th>
+                                        <th class="fw-bolder text-uppercase">Sharer bits</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>B0</td>
+                                        <td>Unshared</td>
+                                        <td>---</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="message">
+                <div class="card">
+                    <div class="card-header fw-bolder text-uppercase">Messages</div>
+                    <div class="card-body">
+                        <p class="alert alert-info">Veiller faire reset pour bien afficher les messages</p>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="fw-bolder text-uppercase">Message Type </th>
+                                        <th class="fw-bolder text-uppercase">Source</th>
+                                        <th class="fw-bolder text-uppercase">Destination</th>
+                                        <th class="fw-bolder text-uppercase">Content</th>
+                                    </tr>
+                                </thead>
+                                <tbody>              
+                                    <tr>
+                                        <td class="text-danger">Aucun message</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

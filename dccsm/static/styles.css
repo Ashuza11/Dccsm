@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Pacifico&family=Ubuntu+Mono&display=swap');
+
+:root {
+    --block-p-color: #405BA4;
+    --block-c-color: #40A497;
+    --blocl-m-color: #7940A4;
+    --block-d-color: #BEC40F;
+    --block-intercon-color: #5E5863;
+    --read-btn: #C4570F;
+    --write-btn: #0FC4A0;
+    --footer-color: #040F0D;
+}
+
+/* General  */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.text-danger {
+    color: var(--read-btn);
+}
+
+bod {
+    font-family:'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+}
+
+nav {
+    width: 100%;   
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding: 10px;
+}
+img {
+    width: 100%;
+    max-width: 150px;
+}
+
+
+/****
+    Typography
+    ****/
+h1 {
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+}
+.fa {
+    font-size: 1.3rem;
+} 
+.node-name {
+    padding: 10px;
+}
+.btn-group {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    position: relative;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    border-radius: 0.25rem;
+}
+.directory {
+    border: 1px solid var(--block-p-color);
+}
+
+.btn-1 {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.directory .btn-1:hover {
+    color: #fff;
+    background-color: var(--block-p-color);
+}
+.Block .btn-1:hover {
+    color: #fff;
+    background-color: var(--blocl-m-color);
+}
+
+
+.Block {
+    border: 1px solid var(--blocl-m-color);
+}
+
+
+.directory .btn-outline-primary {
+    color: var(--block-p-color);
+    background-color: transparent;
+    background-image: none;
+    border-color: var(--block-p-color);
+    cursor: pointer;
+}
+.Block .btn-outline-primary {
+    color: var(--blocl-m-color);
+    background-color: transparent;
+    background-image: none;
+    border-color: var(--blocl-m-color);
+    cursor: pointer;
+}
+
+.directory .btn-outline-primary.active,
+.directory .btn-outline-primary:active {
+    color: #fff;
+    background-color: var(--block-p-color);
+    border-color: var(--block-p-color);
+}
+.Block .btn-outline-primary.active,
+.Block .btn-outline-primary:active {
+    color: #fff;
+    background-color: var(--blocl-m-color);
+    border-color: var(--blocl-m-color);
+}
+
+
+.btn {
+    display: inline-block;
+    padding: .5rem 1rem;
+    border-radius: 7px;
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    touch-action: manipulation;
+    margin: 0;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+.btn-primary {
+    background-color: var(--read-btn);
+}
+.btn-secondary {
+    background-color: var(--write-btn);
+}
+.reset {
+    background-color: #03ff74;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #03ff74;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #ff0364;
+}
+.btns {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+select {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+
+.container, 
+.input-display,
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.container .block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.container
+.block .box {
+    display: flex;
+    flex-direction: column;
+}
+.container
+.block 
+.box .directory {
+    text-align: center;
+    background-color: var(--block-d-color);
+    border: 1px solid #0000005d;
+    width: 50px;
+    height: 50px;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container
+.block  
+.box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.container
+.block .node {
+    border: 1px solid #000;
+    text-align: center;
+}
+.container
+.block .node .head {
+    border-bottom: 1px solid #000;
+    padding: 7px 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.container
+.block 
+.node 
+.body .element {
+    padding: 5px 20px;
+    margin: 10px;
+    border: 1px solid #000;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Table styles  */
+.container
+.block 
+.node 
+.body .element .responsive-table {
+    width: 100%;
+}
+
+.container
+.block 
+.node 
+.body 
+.element 
+.responsive-table 
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+.container
+.block 
+.node 
+.body 
+.element 
+.responsive-table   
+.table thead th {
+    border-bottom: 1px solid #dee2e6;;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .container
+  .block 
+  .node 
+  .body 
+  .element 
+  .responsive-table 
+  .table tbody td {
+    border-bottom: 1px solid #dee2e6;
+    padding: 8px;
+}
+  
+  .container
+  .block 
+  .node 
+  .body 
+  .element 
+  .responsive-table 
+  .table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+  
+
+/* Giving colors  */
+.container
+.block 
+.node 
+.body .processor {
+    background-color: var(--block-p-color);
+}
+
+.container
+.block 
+.node 
+.body .cash {
+    background-color: var(--block-c-color);
+}
+
+.container
+.block 
+.node 
+.body .memoire {
+    background-color: var(--blocl-m-color);
+}
+
+.input-display 
+.input {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+.input-display 
+.input form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.input-display
+.input  .block {
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+}
+.input-display 
+.input form  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    max-width: 200px;
+}
+
+.display table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+.display table, th, td {
+    border: 1px solid #272727;
+    padding: 15px;
+    text-align: center;
+} 
+
+.connections-box {
+    padding: 15px 0px;
+    border: 1px solid #000;
+    margin-top: 15px;
+    text-align: center;
+    width: 800px;
+    background-color: var(--block-intercon-color);
+    color: #fff;
+}
+
+/*
+    Messagies 
+*/
+/* Success message */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    margin-bottom: 1rem;
+    padding: 0.35rem 3rem;
+    border-radius: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.alert-success.show {
+    opacity: 1;
+  }
+  
+.alert-success.hide {
+    opacity: 0;
+}
+
+
+/* Repertoire and Messagies  */
+.container-output {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+.card {
+    border: 1px solid #ccc;
+}
+.card-header {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase;
+}
+  
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    font-weight: bold;
+    border: none;
+}
+  
+.table td {
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+} 
+
+
+.footer-content {
+    margin-top: 30px;
+    width: 850px;
+    background-color: var(--footer-color);
+    text-align: center;
+    color: #fff;
+    /* position: fixed;
+    bottom: 0; */
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-content
+.copyright span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Pacifico', cursive;
+}
+
