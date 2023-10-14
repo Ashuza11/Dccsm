@@ -18,7 +18,7 @@ def home():
         messages = 'messages'
         blocks = 'blocks'
         for node in all_nodes:
-            print(node)
+            print(node.id)
     
         # context = {
         #     'nodes': nodes,

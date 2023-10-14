@@ -46,6 +46,7 @@ class MemoryBloc(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     block_num = db.Column(db.Integer, nullable=False)
     data = db.Column(db.String(20), nullable=False, default='--')
+    directory_rel = db.relationship('Directory', backref=db.backref('bloc_rel', uselist=False), uselist=False)
 
     def __repr__(self) -> str:
         return f"B{self.block_num}"
@@ -57,8 +58,8 @@ class MemoryBloc(db.Model):
 class Directory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     bloc_id = db.Column(db.Integer, db.ForeignKey('memory_bloc.id'), nullable=False)
-    state = db.Column(db.String(30), nullable=False, default='1')
-    owner_bits = db.Column(db.String(5), nullable=False)
+    state = db.Column(db.String(30), default='1')
+    owner_bits = db.Column(db.String(5))
 
     bloc = db.relationship('MemoryBloc', backref=db.backref('directory', uselist=False))
 
@@ -85,10 +86,12 @@ class Directory(db.Model):
     
 class CacheNode(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    bloc = db.relationship('MemoryBloc', backref=db.backref('caches'))
-    state_cache = db.Column(db.String(20), nullable=False)
-    
+    node_id = db.Column(db.Integer, db.ForeignKey('node.id'), nullable=False)
+    bloc_id = db.Column(db.Integer, db.ForeignKey('memory_bloc.id'), nullable=False)
+    state_cache = db.Column(db.String(20))
+
     node = db.relationship('Node', backref=db.backref('caches'))
+    bloc = db.relationship('MemoryBloc', backref=db.backref('caches'))
     
 
     def __repr__(self) -> str:

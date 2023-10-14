@@ -10,14 +10,14 @@ Un protocole de cohérence de cache basé sur un répertoire résout le problèm
 
 # Motivation
 La cohérence du cache est l'un des sujets les plus importants dans la conception des caches multiprocesseurs. ce projet est le projet finale pour le cours de SYSTEMES A MULTIPROCESSEURS ET 
-MACHINES PARALLELES en 1 année de licence, filier ingenierie logiciel.
+MACHINES PARALLELES en 1 année de licence, filier ingenierie logiciel a l'ULPGL Goma.
 
 # Design 
 ![Github Bunner](./dccsm/static/Projet.png)
 
 ## Setup & Installation
 
-Make sure you have the latest version of Python and pip installed.
+Assurez-vous d'avoir la dernière version de Python et de pip installée.
 
 ```bash
 git clone <repo-url>
