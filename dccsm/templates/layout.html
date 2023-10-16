@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>{% block title %}DccSm{% endblock %}</title>
 </head>
 <body>
@@ -30,25 +31,23 @@
         </div>
     </footer>
 
-
-    
     {% block javascript %}
         <script type="text/javascript">
-            console.log("Hello");
-            function readData() {
-                const form_command = document.getElementById('formControl');
-                console.log("hello.......")
-                console.log(form_command);
-
-              
+            const formControl = document.getElementById('formControl');
+            
+             function readData()  {
+                const formControl = document.getElementById('formControl');
+                formControl.action = "{{ url_for('dccsm.read_data') }}";
+                formControl.submit();
             }
             function writeData(){
-                const form_command = document.getElementById('formControl');
-                const data = document.getElementById('EnteredData');
-                console.log(data.value);
-               
+                const formControl = document.getElementById('formControl');
+                // const data = document.getElementById('EnteredData');
+                formControl.action = "{{ url_for('dccsm.write_data') }}";
+                formControl.submit();
             }
         </script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     {% endblock %}
 </body>
 </html>

@@ -34,7 +34,7 @@ class Node(db.Model):
     
     @property
     def node_string(self):
-        return f"Node {self.numero}"
+        return f"Node {self.numero} - {self.name}"
     
     @property
     def all_caches(self):
@@ -46,7 +46,7 @@ class MemoryBloc(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     block_num = db.Column(db.Integer, nullable=False)
     data = db.Column(db.String(20), nullable=False, default='--')
-    directory_rel = db.relationship('Directory', backref=db.backref('bloc_rel', uselist=False), uselist=False)
+
 
     def __repr__(self) -> str:
         return f"B{self.block_num}"
@@ -56,16 +56,18 @@ class MemoryBloc(db.Model):
         return f"B{self.block_num}"
     
 class Directory(db.Model):
+    
     id = db.Column(db.Integer, primary_key=True)
     bloc_id = db.Column(db.Integer, db.ForeignKey('memory_bloc.id'), nullable=False)
     state = db.Column(db.String(30), default='1')
     owner_bits = db.Column(db.String(5))
 
-    bloc = db.relationship('MemoryBloc', backref=db.backref('directory', uselist=False))
+    # Disable lazy loading for the `bloc` relationship
+    bloc = db.relationship('MemoryBloc', lazy='joined')
 
     def __repr__(self) -> str:
         return str(self.bloc)
-    
+
     @property
     def string_block(self) -> str:
         return f"B{self.bloc.block_num}"

@@ -189,8 +189,6 @@ select {
 }
 
 
-
-
 .container, 
 .input-display,
 .footer {
@@ -198,7 +196,7 @@ select {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 1rem;
+    margin: 7px;
 }
 
 .container .block {
@@ -218,7 +216,7 @@ select {
 .box .directory {
     text-align: center;
     background-color: var(--block-d-color);
-    border: 1px solid #0000005d;
+    border: 1px solid #ccc;
     width: 50px;
     height: 50px;
     align-self: flex-end;
@@ -238,12 +236,12 @@ select {
 
 .container
 .block .node {
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     text-align: center;
 }
 .container
 .block .node .head {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #ccc;
     padding: 7px 20px;
     width: 100%;
     margin-bottom: 10px;
@@ -254,7 +252,7 @@ select {
 .body .element {
     padding: 5px 20px;
     margin: 10px;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     color: #fff;
     font-weight: 700;
 }
@@ -385,25 +383,50 @@ select {
 }
 
 /*
-    Messagies 
+    Toast message
 */
-/* Success message */
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    margin-bottom: 1rem;
-    padding: 0.35rem 3rem;
-    border-radius: 0.25rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.toast {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 250px;
+    height: auto;
+    background: linear-gradient(to right, var(--block-d-color), var(--block-d-color));
+    color: #000000;
+    border: 1px solid #ccc;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    padding: 7px;
+    z-index: 100;
+    display: none;
+}
+.toast .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; 
+}
+.toast .warning-icon {
+    font-size: 20px;
 }
 
-.alert-success.show {
-    opacity: 1;
-  }
-  
-.alert-success.hide {
+.toast-message {
+    font-size: 16px;
+    line-height: 20px; 
+}
+
+.toast-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.toast-close:hover {
+    color: red;
+}
+
+.toast.hidden {
     opacity: 0;
 }
 

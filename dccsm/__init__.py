@@ -20,7 +20,7 @@ def create_app():
     from .models import Node, MemoryBloc,  Directory, CacheNode, MessageSimulation
 
     with app.app_context():
-        create_database()
+        db.create_all()
 
     return app
 

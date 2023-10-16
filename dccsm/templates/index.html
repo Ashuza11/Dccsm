@@ -76,27 +76,27 @@
         <div class="input">
             <form action="#" method="post" enctype="multipart/form-data" id="formControl">
                 <div class="form-group">
-                    <select>
-                        <option value="option1">Home</option>
-                        <option value="option2">Local</option>
-                        <option value="option3">Remote</option>
+                    <select name="node">
+                        {% for node in all_nodes %}
+                            <option value={{node.id}}>{{node.node_string}}</option>
+                        {% endfor %}
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <select>
-                        <option value="option1">B0</option>
-                        <option value="option2">B1</option>
-                        <option value="option3">B2</option>
+                    <select name="block" >
+                        {% for block in directory %}
+                            <option value={{block.id}}>{{block.string_block}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <input required="" type="text" id="EnteredData" placeholder="Enter data ...">
+                    <input name="data" required="" type="text" id="EnteredData" placeholder="Enter data ...">
                 </div>
                 <div class="btns">
                     <button type="button" onclick="readData()" class="btn btn-primary">Read</button>
                     <button type="button" onclick="writeData()" class="btn btn-secondary">Write</button>
-                    <a href="{{ url_for('dccsm.reinitialisation_data') }}" class="btn reset">Reset</a>
+                    <a href="{{ url_for('dccsm.data_initialisation') }}" class="btn reset">Reset</a>
                 </div>
             </form>
         </div>
@@ -111,17 +111,19 @@
                             <table class="table table-sm">
                                 <thead>
                                     <tr>
-                                        <th class="fw-bolder text-uppercase">Block</th>
-                                        <th class="fw-bolder text-uppercase">Etat</th>
-                                        <th class="fw-bolder text-uppercase">Sharer bits</th>
+                                        <th>Block</th>
+                                        <th>C. State</th>
+                                        <th>Sharer / Owner Bits</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>B0</td>
-                                        <td>Unshared</td>
-                                        <td>---</td>
-                                    </tr>
+                                    {% for dir in directory %}
+                                        <tr>
+                                            <td>{{dir.bloc}}</td>
+                                            <td>{{dir.state_directory}}</td>
+                                            <td>{{dir.owner_bits}}</td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -132,24 +134,43 @@
                 <div class="card">
                     <div class="card-header fw-bolder text-uppercase">Messages</div>
                     <div class="card-body">
-                        <p class="alert alert-info">Veiller faire reset pour bien afficher les messages</p>
                         <div class="table-responsive">
                             <table class="table table-sm">
                                 <thead>
                                     <tr>
-                                        <th class="fw-bolder text-uppercase">Message Type </th>
-                                        <th class="fw-bolder text-uppercase">Source</th>
-                                        <th class="fw-bolder text-uppercase">Destination</th>
-                                        <th class="fw-bolder text-uppercase">Content</th>
+                                        <th>Message Type </th>
+                                        <th>Source</th>
+                                        <th>Destination</th>
+                                        <th>Content</th>
                                     </tr>
                                 </thead>
-                                <tbody>              
-                                    <tr>
-                                        <td class="text-danger">Aucun message</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                <tbody>
+                                    {% if messages %}
+                                        {% for msg in messages %}
+                                            {% if msg.type_message == 'Read Miss' or msg.type_message == 'Write Miss' or msg.type_message == 'Fetch/Invalidate' or msg.type_message == 'Invalidate' %}
+                                                <tr class="text-danger">
+                                                    <td>{{msg.type_message}}</td>
+                                                    <td>{{msg.source}}</td>
+                                                    <td>{{msg.destination}}</td>
+                                                    <td>{{msg.content_msg}}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td>{{msg.type_message}}</td>
+                                                    <td>{{msg.source}}</td>
+                                                    <td>{{msg.destination}}</td>
+                                                    <td>{{msg.content_msg}}</td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}              
+                                        <tr>
+                                            <td class="text-danger">Aucun message</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>
@@ -158,5 +179,13 @@
             </div>
         </div>
     </section>
+
+    <div class="toast">
+        <div class="item">
+            <i class="fa-solid fa-exclamation-triangle warning-icon"></i>
+            <div class="toast-message">Veiller faire reaset pour bien afficher les messages</div>
+        </div>
+        <i class="toast-close fa-solid fa-x"></i>
+    </div>
 {% endblock %}
 
