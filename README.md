@@ -9,8 +9,7 @@ DccSm System est un simulateur de cohérence de cache basé sur les répertoires
 Un protocole de cohérence de cache basé sur un répertoire résout le problème de cohérence de cache dans les systèmes à mémoire partagée distribuée ou NUMA. Chaque cœur est connecté à un répertoire qui garde trace de l'état des lignes de cache dans la mémoire locale du cœur au lieu d'utiliser un bus comme dans un protocole basé sur le snooping. Sa plus grande force est qu'il est très évolutif car les cœurs ne parlent qu'aux cœurs qui les intéressent au lieu de diffuser le message sur l'ensemble de l'interconnexion.
 
 # Motivation
-La cohérence du cache est l'un des sujets les plus importants dans la conception des caches multiprocesseurs. ce projet est le projet finale pour le cours de SYSTEMES A MULTIPROCESSEURS ET 
-MACHINES PARALLELES en 1 année de licence, filier ingenierie logiciel a l'ULPGL Goma.
+La cohérence du cache est l'un des sujets les plus importants dans la conception des caches multiprocesseurs. Ce projet est le projet final pour le cours de systèmes à multiprocesseurs et machines parallèles en 1re année de licence, filière ingénierie logicielle à l'ULPGL Goma, cours dispensé par M. Kambale Wamuhindo Abedneg.
 
 # Design 
 ![Github Bunner](./dccsm/static/Projet.png)
