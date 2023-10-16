@@ -13,7 +13,7 @@ function hideToast() {
 toast.querySelector('.toast-close').addEventListener('click', hideToast);
 setTimeout(function() {
     toast.classList.add('hidden');
-}, 60000);
+}, 30000);
 
 showToast();
 
